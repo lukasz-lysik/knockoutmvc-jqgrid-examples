@@ -1,0 +1,84 @@
+﻿@using PerpetuumSoft.Knockout
+@model KnockoutJs.JqGrid.Controllers.MyViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Index</title>
+    
+	<link rel="stylesheet" href="@Url.Content("~/Content/themes/base/jquery-ui.css")" type="text/css"/>
+	<link rel="stylesheet" href="@Url.Content("~/assets/css/ui.jqgrid.css")" type="text/css"/>
+    
+    <script type="text/javascript" src="@Url.Content("~/assets/js/jquery-1.6.1.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/assets/js/knockout.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/assets/js/knockout.mapping-latest.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/assets/js/grid.locale-en.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/assets/js/jquery.jqGrid.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/assets/js/ko.gridBinding.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/assets/js/perpetuum.knockout.js")"></script>
+</head>
+    <body>
+        @{
+            var ko = Html.CreateKnockoutContext();
+            @ko.Initialize(Model)
+        }
+        <div>
+            <div id="pager"></div>
+            <table id="animals" data-bind="grid: { data: Items }" >
+                <caption>Amazing Animals</caption>
+                <thead> 
+                    <tr> 
+                        <th data-field="actions" style="width:27px;"></th>
+                        <th data-field="name" width="150px">Item Name</th> 
+                        <th data-field="sales">Sales Count</th> 
+                        <th data-field="price">Price</th> 
+                    </tr> 
+                </thead> 
+                <tbody>
+                    <tr>
+                        <td data-field="actions">
+                            <a class="grid-edit" data-bind="attr:{ href: 'animals/' + id, title: name }, text: id"></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            @ko.Html.Button("Dodaj", "Add", "Home")
+
+            <script type="text/javascript">	
+//            $(function () {
+//                var dataService = {
+//                    GetAnimals: function(callback){
+//                        var initialData = [
+//                            { id:1, name: "Well-Travelled Kitten", sales: 352, price: 75.95 },
+//                            { id:2, name: "Speedy Coyote", sales: 89, price: 190.00 },
+//                            { id:3, name: "Furious Lizard", sales: 152, price: 25.00 },
+//                            { id:4, name: "Indifferent Monkey", sales: 1, price: 99.95 },
+//                            { id:5, name: "Brooding Dragon", sales: 0, price: 6350 },
+//                            { id:6, name: "Ingenious Tadpole", sales: 39450, price: 0.35 },
+//                            { id:7, name: "Optimistic Snail", sales: 420, price: 1.50 }
+//                        ];
+//                        callback(initialData);
+//                    }
+//                };
+//                var viewModel = {
+//                    animals: ko.observableArray([])
+//                };
+
+//                dataService.GetAnimals(function (result) {
+//                    viewModel.animals(result);
+//                });
+
+//                ko.applyBindings(viewModel);
+//            });
+        </script>
+        </div>
+    
+        @ko.Apply(Model)
+
+    </body>
+</html>
